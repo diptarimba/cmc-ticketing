@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('photo');
             $table->string('payment');
             $table->string('twibbon');
-            $table->string('follow_ig_cmc')->nullable();
-            $table->string('follow_ig_sekoin')->nullable();
+            $table->string('follow_ig_cmc');
+            $table->string('follow_ig_sekoin');
             $table->string('register_type');
             $table->timestamps();
         });

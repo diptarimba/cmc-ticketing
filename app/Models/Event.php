@@ -14,11 +14,22 @@ class Event extends Model
         'name',
         'location',
         'description',
-        'date'
+        'date',
+        'is_register'
     ];
 
     public function event_image()
     {
         return $this->hasOne(EventImage::class);
+    }
+
+    public function event_document()
+    {
+        return $this->hasMany(EventDocument::class);
+    }
+
+    public function event_register()
+    {
+        return $this->hasMany(EventRegister::class);
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('location');
             $table->string('date');
             $table->longText('description');
+            $table->boolean('is_register');
             $table->timestamps();
         });
     }
