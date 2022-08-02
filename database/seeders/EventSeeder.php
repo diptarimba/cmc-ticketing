@@ -39,7 +39,7 @@ class EventSeeder extends Seeder
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'register_type' => 'SINGLE',
+                'register_type' => 'TEAM',
                 'is_register' => 1
             ],
             [
