@@ -26,3 +26,5 @@ Route::group(['middleware' => ['auth:web']], function(){
 });
 Route::get('/', [HomeController::class, 'index'])->name('guest.home.index');
 Route::get('/{id}/detail', [HomeController::class, 'detail'])->name('guest.home.detail');
+Route::get('/{id}/register', [HomeController::class, 'indexRegister'])->name('guest.home.register');
+Route::post('/register', [HomeController::class, 'register'])->name('guest.post.register');

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('location');
             $table->string('date');
+            $table->enum('register_type', ['SINGLE', 'TEAM'])->nullable();
             $table->longText('description');
             $table->boolean('is_register');
             $table->timestamps();

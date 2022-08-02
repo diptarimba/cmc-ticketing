@@ -34,8 +34,12 @@
 
 @section('body')
 <div class="container vh-100">
-    <p class="h3 text-center">Login Page</p>
-    <form class="border" action="{{route('login.post')}}" method="post">
+    <p class="h3 pt-5 text-center">Login Page</p>
+    <div class="col-12">
+        <x-flash />
+    </div>
+    <form class="" action="{{route('login.post')}}" method="post">
+        @csrf
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input name="username" type="email" class="form-control" id="exampleInputEmail1"

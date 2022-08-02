@@ -21,12 +21,15 @@
 <body class="bg-black bg-opacity-10">
     <div class="container bg-white col-xl-4 col-md-6 col-12">
         <div class="container">
+            <div class="pt-5 col-12">
+                <img class="img-fluid" src="{{asset('storage/photo/logo.png')}}" alt="">
+            </div>
             @yield('body')
         </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
