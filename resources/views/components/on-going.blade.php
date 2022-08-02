@@ -1,5 +1,6 @@
 <div class="d-flex py-4 align-items-center containercuy h-100 col-md-12 mb-2 px-0"
-        style="background-image: linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.6)), url({{$image}}); background-size: 100% auto; background-repeat: no-repeat">
+        style="background-image: linear-gradient(to left, rgba(245, 246, 252, 0.52), rgba(0, 0, 0, 0.5)), url({{$image}}); background-size: 100% 100%; background-repeat: no-repeat"
+        >
             <div class="ps-3 d-flex flex-column">
                 <p class="m-0 text-white text-wrap"><strong>{{$title}}</strong></p>
                 <p class="m-0 text-white"><span><i class="p-2 ps-0 fa-solid fa-location-dot"></i></span>{{$loc}}</p>

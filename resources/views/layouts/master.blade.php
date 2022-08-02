@@ -22,7 +22,7 @@
     <div class="container bg-white col-xl-4 col-md-6 col-12">
         <div class="container">
             <div class="pt-5 col-12">
-                <img class="img-fluid" src="{{asset('storage/photo/logo.png')}}" alt="">
+                <img class="img-fluid" src="{{asset('storage/images/logo.png')}}" alt="">
             </div>
             @yield('body')
         </div>
