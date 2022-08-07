@@ -15,6 +15,7 @@ class Event extends Model
         'description',
         'date',
         'is_register',
+        'is_gallery',
         'register_type'
     ];
 

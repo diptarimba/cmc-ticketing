@@ -5,15 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\EventRegister;
 use Illuminate\Http\Request;
-use stdClass;
-use Symfony\Contracts\Service\Attribute\Required;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $eventReg = Event::with('event_image')->where('is_register', 1)->get();
-        $eventNonReg = Event::with('event_image')->where('is_register', 0)->get();
+        $eventReg = Event::with('event_image')->where('is_gallery', 0)->get();
+        $eventNonReg = Event::with('event_image')->where('is_gallery', 1)->get();
         return view('home.index', compact('eventReg', 'eventNonReg'));
     }
 

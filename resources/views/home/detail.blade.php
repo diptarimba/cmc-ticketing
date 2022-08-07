@@ -17,11 +17,13 @@
             </div>
             <ul class="list-group list-group-flush">
                 @foreach ($event->event_document as $each)
-                <li class="list-group-item">Download Document : <a href="{{$each->document}}" class="btn btn-warning btn-sm">{{$each->name}}</a></li>
+                <li class="list-group-item">Download : <a href="{{$each->document}}" class="btn btn-warning btn-sm">{{$each->name}}</a></li>
                 @endforeach
             </ul>
             <div class="card-body">
+                @if ($event->is_register == 1)
                 <a href="{{route('guest.home.register', $event->id)}}" class="btn btn-outline-warning text-black">Register</a>
+                @endif
             </div>
         </div>
     </div>

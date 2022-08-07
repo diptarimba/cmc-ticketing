@@ -24,7 +24,8 @@ class EventSeeder extends Seeder
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
                 'register_type' => 'SINGLE',
-                'is_register' => 1
+                'is_register' => 1,
+                'is_gallery' => 0
             ],
             [
                 'name' => 'Lomba Video',
@@ -32,7 +33,8 @@ class EventSeeder extends Seeder
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
                 'register_type' => 'SINGLE',
-                'is_register' => 1
+                'is_register' => 1,
+                'is_gallery' => 0
             ],
             [
                 'name' => 'Lomba Trading',
@@ -40,58 +42,59 @@ class EventSeeder extends Seeder
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
                 'register_type' => 'TEAM',
-                'is_register' => 1
+                'is_register' => 1,
+                'is_gallery' => 0
             ],
             [
                 'name' => 'SEKOLAH PASAR MODAL 1 & 2',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],
             [
                 'name' => 'Sekolah Pasar Modal Lanjutan',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],
             [
                 'name' => 'Bedah Paper',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],[
                 'name' => 'IG LIVE',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],[
                 'name' => 'Opening Account',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],[
                 'name' => 'Pengembangan Pengetahuan Pengurus',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],[
                 'name' => 'Share it',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],[
                 'name' => 'Upgrading Investor',
                 'location' => 'RSG POLINES',
                 'date' => '2022-08-1 12:31:41',
                 'description' => '123',
-                'is_register' => 0
+                'is_gallery' => 1
             ],
 
         ];
