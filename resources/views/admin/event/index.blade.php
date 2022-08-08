@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.admin.master')
 
-@section('title', 'Promosi dan Mutasi Pegawai')
+@section('title', 'Event Management')
 
 @section('header')
 
@@ -8,14 +8,14 @@
 
 @section('body')
 <x-layoutContent
-    Heading="Promosi dan Mutasi Pegawai"
-    mainTitle="Pengadaan Pegawai"
-    subTitle="Promosi dan Mutasi Pegawai"
+    Heading="Event Management"
+    mainTitle="Skoin 2022"
+    subTitle="Event Management"
 >
     <x-card.card>
         <x-slot name="header">
             @if(Auth::check())
-            <x-card.card-title-create url="{{route('promotion_transfer.create')}}" />
+            <x-card.card-title-create url="{{route('event.create')}}" />
             @endif
         </x-slot>
         <x-slot name="body">
@@ -23,7 +23,7 @@
                 <thead>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Code</th>
+                    <th>Location</th>
                     <th>Date</th>
                     <th>Action</th>
                 </thead>
@@ -45,11 +45,11 @@
         var table = $('.datatables-target-exec').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('promotion_transfer.index') }}",
+        ajax: "{{ route('event.index' )}}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, sortable: false, searchable: false},
             {data: 'name', name: 'name'},
-            {data: 'code', name: 'code'},
+            {data: 'location', name: 'location'},
             {data: 'date', name: 'date'},
             {
                 data: 'action',

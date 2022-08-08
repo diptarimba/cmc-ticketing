@@ -43,44 +43,9 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                @if (Auth::check())
-                <x-sidebar.menu-label text="Profile"/>
-                <li class="sidebar-item  ">
-                    <div class="sidebar-link text-wrap"><i class="bi bi-card-heading"></i><span>Name : {{Auth::user()->name}}</span></div>
-                    <div class="sidebar-link text-wrap"><i class="bi bi-sliders"></i><span>Role : {{ ucwords(Auth::user()->roles->first()->name)}}</span></div>
-                </li>
-                @else
-                <x-sidebar.menu-label text="Profile"/>
-                <li class="sidebar-item  ">
-                    <div class="sidebar-link text-wrap"><i class="bi bi-sliders"></i><span>Role : Guest</span></div>
-                </li>
-                @endif
-                <x-sidebar.menu-label text="Menu"/>
                 <x-sidebar.sidebar-single text="Dashboard" icon="bi bi-grid-fill" href="/"/>
-                <x-sidebar.sidebar-parent text="Pengadaan Pegawai" icon="bi bi-stack">
-                    <x-sidebar.sidebar-child text="Formasi Pegawai" href="{{route('formation.index')}}"/>
-                    <x-sidebar.sidebar-child text="Penerimaan Pegawai" href="{{route('reception.index')}}"/>
-                    <x-sidebar.sidebar-child text="Penolakan Pegawai" href="{{route('refusal.index')}}"/>
-                    <x-sidebar.sidebar-child text="Penetapan Pegawai" href="{{route('appointment.index')}}"/>
-                </x-sidebar.sidebar-parent>
-                <x-sidebar.sidebar-parent text="Pengembangan Karir Pegawai" icon="bi bi-stack">
-                    <x-sidebar.sidebar-child text="Pengembangan Kompetensi Pegawai" href="{{route('competency_development.index')}}"/>
-                    <x-sidebar.sidebar-child text="Promosi dan Mutasi Pegawai" href="{{route('promotion_transfer.index')}}"/>
-                    <x-sidebar.sidebar-child text="Penghargaan/Tanda Jasa Pegawai" href="{{route('award.index')}}"/>
-                </x-sidebar.sidebar-parent>
-                @if (Auth::check())
-                @php
-                    $role = Auth::user()->roles->first()->name;
-                @endphp
-                @if ($role == 'superadmin')
-                <x-sidebar.sidebar-single text="User Management" icon="bi bi-person-video2" href="{{route('user.index')}}"/>
-                @endif
-                <x-sidebar.sidebar-single text="Profil Saya" icon="bi bi-person-circle" href="{{route('me')}}"/>
-                <x-sidebar.sidebar-single text="Logout" icon="bi bi-arrow-bar-right" href="{{route('logout')}}"/>
-                @else
-                {{-- <x-sidebar.sidebar-single text="Register" icon="bi bi-person-plus-fill" href="{{route('register.index')}}"/> --}}
-                <x-sidebar.sidebar-single text="Login" icon="bi bi-arrow-right-circle" href="{{route('login.index')}}"/>
-                @endif
+                <x-sidebar.sidebar-single text="Event" icon="bi bi-stack" href="{{route('event.index')}}"/>
+                <x-sidebar.sidebar-single text="Logout" icon="bi bi-arrow-bar-right" href="{{route('logout.index')}}"/>
             </ul>
         </div>
     </div>

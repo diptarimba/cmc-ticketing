@@ -10,9 +10,9 @@ class LoginController extends Controller
     public function index()
     {
         if(Auth::guard('web')->check()){
-            return redirect(route('moderator.home.index'));
+            return redirect(route('admin.home.index'));
         }
-        return view('auth.login');
+        return view('admin.auth.login');
     }
 
     public function login(Request $request)
@@ -33,7 +33,7 @@ class LoginController extends Controller
 
         if($auth){
             return redirect()
-				->intended(route('moderator.home.index'))
+				->intended(route('admin.home.index'))
 				->with('success','Sukses Login!');
         }else{
             return back()->withErrors('username / password anda salah!');

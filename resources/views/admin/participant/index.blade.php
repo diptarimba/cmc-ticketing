@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.admin.master')
 
-@section('title', 'Pengembangan Kompetensi Pegawai')
+@section('title', 'Penghargaan Pegawai')
 
 @section('header')
 
@@ -8,14 +8,14 @@
 
 @section('body')
 <x-layoutContent
-    Heading="Pengembangan Kompetensi Pegawai"
+    Heading="Penghargaan Pegawai"
     mainTitle="Pengadaan Pegawai"
-    subTitle="Pengembangan Kompetensi Pegawai"
+    subTitle="Penghargaan Pegawai"
 >
     <x-card.card>
         <x-slot name="header">
             @if(Auth::check())
-            <x-card.card-title-create url="{{route('competency_development.create')}}" />
+            <x-card.card-title-create url="{{route('award.create')}}" />
             @endif
         </x-slot>
         <x-slot name="body">
@@ -45,7 +45,7 @@
         var table = $('.datatables-target-exec').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('competency_development.index') }}",
+        ajax: "{{ route('award.index') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, sortable: false, searchable: false},
             {data: 'name', name: 'name'},

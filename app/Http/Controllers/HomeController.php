@@ -12,6 +12,7 @@ class HomeController extends Controller
     {
         $eventReg = Event::with('event_image')->where('is_gallery', 0)->get();
         $eventNonReg = Event::with('event_image')->where('is_gallery', 1)->get();
+        // dd($eventNonReg);
         return view('home.index', compact('eventReg', 'eventNonReg'));
     }
 

@@ -17,6 +17,13 @@
                             <x-forms.input label="Ketua Team" name="team_leader" value="" />
                             @for ($x = 0; $x < 2; $x++)
                                 <hr>
+                                @if ($x > 0)
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="alonely">
+                                    <label class="form-check-label" for="alonely">Saya seorang diri</label>
+                                  </div>
+                                    <div id="alone">
+                                @endif
                                 <label for="" class="form-label text-center">Peserta {{$x+1}}</label>
                                 <x-forms.input label="Nama Lengkap" name="{{ 'data[' .$x .'][name]' }}" value="" />
                                 <div class="mb-2">
@@ -43,6 +50,9 @@
 
                                 <x-forms.file label="Bukti Follow Ig @sekoin2022" name="{{ 'data[' .$x .'][follow_ig_sekoin]' }}" id="gallery-photo-add-{{$x}}-sekoin" />
                                 <div class="gallery-{{$x}}-sekoin row row-cols-12 justify-content-center" id="isi-gallery-{{$x}}-sekoin"></div>
+                                @if ($x > 0)
+                                    </div>
+                                @endif
                             @endfor
                             <hr>
                             <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
@@ -116,5 +126,14 @@
         }
         @endphp
         @endif
-        </script>
+        $(document).ready(() => {
+            $('#alonely').on('click', function(){
+                if ($('#alonely').is(':checked')) {
+                    console.log('checked');
+                    $('#alone :input').attr('disabled', true);
+                    $('#alone :button').attr('disabled', true);
+                }
+            })
+        })
+    </script>
 @endsection
