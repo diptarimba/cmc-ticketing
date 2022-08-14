@@ -27,4 +27,9 @@ class EventRegister extends Model
         'payment',
         'register_type'
     ];
+
+    public function event_transaction()
+    {
+        return $this->hasMany(EventTransaction::class);
+    }
 }
