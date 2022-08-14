@@ -33,4 +33,9 @@ class Event extends Model
     {
         return $this->hasMany(EventRegister::class);
     }
+
+    public function event_package()
+    {
+        return $this->hasMany(EventPackage::class);
+    }
 }

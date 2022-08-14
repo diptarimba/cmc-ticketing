@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\EventController;
+use App\Http\Controllers\admin\EventPackageController;
 use App\Http\Controllers\admin\HomeController as AdminHomeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -27,6 +28,7 @@ Route::group(['middleware' => ['auth:web']], function(){
     Route::get('/auth/logout', [LoginController::class, 'logout'])->name('logout.index');
     Route::delete('/event/document/{document}', [EventController::class, 'documentDestory'])->name('document.destroy');
     Route::resource('/event', EventController::class);
+    Route::resource('event.package', EventPackageController::class);
 });
 Route::get('/', [HomeController::class, 'index'])->name('guest.home.index');
 Route::get('/{id}/detail', [HomeController::class, 'detail'])->name('guest.home.detail');

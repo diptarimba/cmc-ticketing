@@ -55,6 +55,14 @@
                                 @endif
                             @endfor
                             <hr>
+                            <div class="mb-2">
+                                <div class="col-form-label">Pilih Paket Anda</div>
+                                <select class="form-control" name="package_id">
+                                    @foreach ($package as $each)
+                                    <option value="{{$each->id}}">{{$each->name}} [Rp. {{number_format($each->price, 0, ",", ".")}}]</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
                             <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment"></div>
                             <div class="mb-2">
@@ -89,6 +97,14 @@
                             </div>
                             <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
                             <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment">
+                            </div>
+                            <div class="mb-2">
+                                <div class="col-form-label">Pilih Paket Anda</div>
+                                <select class="form-control" name="package_id">
+                                    @foreach ($package as $each)
+                                    <option value="{{$each->id}}">{{$each->name}} [Rp. {{number_format($each->price, 0, ",", ".")}}]</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mb-2">
                                 <input type="hidden" name="register_type" value="SINGLE">

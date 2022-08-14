@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <link href="https://vjs.zencdn.net/7.20.1/video-js.css" rel="stylesheet" />
+    <link href="{{asset('assets/css/shared/video-js.css')}}" rel="stylesheet" />
     <style>
         .melayang {
             z-index: 10;
@@ -85,5 +85,5 @@
 @endsection
 
 @section('footer')
-    <script src="https://vjs.zencdn.net/7.20.1/video.min.js"></script>
+    <script src="{{asset('assets/js/video.min.js')}}"></script>
 @endsection

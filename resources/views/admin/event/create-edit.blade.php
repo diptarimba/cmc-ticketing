@@ -37,16 +37,6 @@
                             {{ @$event->is_gallery ? 'checked=""' : '' }}>
                         <label class="form-check-label" for="flexSwitchCheckChecked">Hanya Galeri</label>
                     </div>
-                    @if (request()->routeIs('event.edit'))
-                    <div class="mb-3">
-                        <span class="form-label">File Tersedia : </span>
-                        <ul>
-                            @foreach ($document as $each)
-                            <li class="mb-1"><a href="{{$each->document}}" class="btn btn-sm btn-primary">{{$each->name}}</a><x-action.delete action="{{ route('document.destroy', $each->id) }}" ident="{{Illuminate\Support\Str::random(10)}}"/></li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     <x-forms.input required="" label="File Name" name="file_name" :value="@$event->locatio" />
                     <x-forms.file name="file" label="File Document" />
                     <x-forms.file label="Foto Event" name="image" id="gallery-photo-add" />
@@ -54,6 +44,21 @@
                 </form>
                 <button form="form" class="btn btn-outline-primary btn-pill">Submit</button>
                 <x-action.cancel />
+                <hr />
+                @if (request()->routeIs('event.edit'))
+                    <div class="mb-3">
+                        <span class="form-label">File Tersedia : </span>
+                        <ul>
+                            @foreach ($document as $each)
+                                <li class="mb-1"><a href="{{ $each->document }}"
+                                        class="btn btn-sm btn-primary">{{ $each->name }}</a>
+                                    <x-action.delete action="{{ route('document.destroy', $each->id) }}"
+                                        ident="{{ Illuminate\Support\Str::random(10) }}" />
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </x-slot>
         </x-card.card>
     </x-layoutContent>

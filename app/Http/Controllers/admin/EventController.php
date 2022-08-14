@@ -153,10 +153,12 @@ class EventController extends Controller
     public function getActionColumn($data)
     {
         $editBtn = route('event.edit', $data->id);
+        $packageBtn = route('event.package.index', $data->id);
         $deleteBtn = route('event.destroy', $data->id);
         $ident = Str::random(15);
         $dataReturn = '';
         $dataReturn .= '<a href="'.$editBtn.'" class="btn mx-1 my-1 btn-sm btn-outline-success">Edit</a>'
+        .'<a href="'.$packageBtn.'" class="btn mx-1 my-1 btn-sm btn-outline-warning">Package</a>'
         . '<input form="form'.$ident .'" type="submit" value="Delete" class="mx-1 my-1 btn btn-sm btn-outline-danger">
         <form id="form'.$ident .'" action="'.$deleteBtn.'" method="post">
         <input type="hidden" name="_token" value="'.csrf_token().'" />

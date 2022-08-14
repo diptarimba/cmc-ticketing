@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\EventPackage;
 use App\Models\EventRegister;
 use Illuminate\Http\Request;
 
@@ -25,11 +26,18 @@ class HomeController extends Controller
     public function indexRegister($id)
     {
         $event = Event::whereId($id)->first();
+        $package = EventPackage::whereHas('event', function($query) use ($id){
+            $query->whereId($id);
+        })->get();
+
         if($event == null){
             return redirect()->route('guest.home.index')->with('success', 'Register Tidak Ditemukan');
         }
 
-        return view('home.register', compact('event'));
+        if(count($package) == 0){
+            return redirect()->route('guest.home.index')->with('error', 'Paket tidak tersedia');
+        }
+        return view('home.register', compact('event', 'package'));
     }
 
     public function register(Request $request)
