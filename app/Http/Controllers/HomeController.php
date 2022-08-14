@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\EventPackage;
 use App\Models\EventRegister;
+use App\Models\EventTransaction;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Rfc4122\UuidV4;
+use Ramsey\Uuid\Uuid;
 
 class HomeController extends Controller
 {
@@ -56,6 +59,7 @@ class HomeController extends Controller
                 'email' => 'required|email',
                 'agency' => 'required',
                 'phone' => 'required',
+                'package_id' => 'required',
                 'card' => 'required|mimes:jpeg,jpg,png|max:1024',
                 'photo' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'twibbon' => 'required|max:1024|mimes:jpeg,jpg,png',
@@ -65,7 +69,7 @@ class HomeController extends Controller
                 'event_id' => 'required|exists:events,id'
             ]);
 
-            EventRegister::create(array_merge($request->all(), [
+            $registran = EventRegister::create(array_merge($request->all(), [
                 'card' => '/storage/' . $request->file('card')->storePublicly('card'),
                 'photo' => '/storage/' . $request->file('photo')->storePublicly('photo'),
                 'twibbon' => '/storage/' . $request->file('twibbon')->storePublicly('twibbon'),
@@ -74,6 +78,12 @@ class HomeController extends Controller
                 'payment' => '/storage/' . $request->file('payment')->storePublicly('payment')
             ]));
 
+            $transaction = EventTransaction::create([
+                'event_package_id' => $request->package_id,
+                'event_register_id' => $registran->id,
+                'order_id' => Uuid::uuid4()
+            ]);
+
             return redirect()->route('guest.home.index')->with('success', 'Anda berhasil mendaftar! Silahkan tunggu info berikutnya');
 
         } else {
@@ -81,6 +91,7 @@ class HomeController extends Controller
             $this->validate($request,[
                 'team_leader' => 'required',
                 'team_name' => 'required',
+                'package_id' => 'required',
                 'data.*.name' => 'required',
                 'data.*.gender' => 'required',
                 'data.*.email' => 'required',
@@ -94,8 +105,9 @@ class HomeController extends Controller
                 'payment' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'event_id' => 'required|exists:events,id'
             ]);
+            $tokenRegister = Uuid::uuid4();
             for($x = 0; $x < count($request->data); $x++){
-                EventRegister::create(array_merge($request->all(),[
+                $registran = EventRegister::create(array_merge($request->all(),[
                     'card' => '/storage/' . $request->file('data.*.card')[$x]->storePublicly('card'),
                     'photo' => '/storage/' . $request->file('data.*.photo')[$x]->storePublicly('photo'),
                     'twibbon' => '/storage/' . $request->file('data.*.twibbon')[$x]->storePublicly('twibbon'),
@@ -112,6 +124,12 @@ class HomeController extends Controller
                     'event_id' => $request->event_id,
                     'register_type' => $request->register_type
                 ]));
+
+                $transaction = EventTransaction::create([
+                    'event_package_id' => $request->package_id,
+                    'event_register_id' => $registran->id,
+                    'order_id' => $tokenRegister
+                ]);
             };
 
             return redirect()->route('guest.home.index')->with('success', 'Anda berhasil mendaftar! Silahkan tunggu info berikutnya');
