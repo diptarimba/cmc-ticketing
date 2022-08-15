@@ -7,6 +7,7 @@ use App\Models\EventPackage;
 use App\Models\EventRegister;
 use App\Models\EventTransaction;
 use Illuminate\Http\Request;
+use Midtrans\Snap;
 use Ramsey\Uuid\Rfc4122\UuidV4;
 use Ramsey\Uuid\Uuid;
 
@@ -65,7 +66,7 @@ class HomeController extends Controller
                 'twibbon' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'follow_ig_cmc' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'follow_ig_sekoin' => 'required|max:1024|mimes:jpeg,jpg,png',
-                'payment' => 'required|max:1024|mimes:jpeg,jpg,png',
+                // 'payment' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'event_id' => 'required|exists:events,id'
             ]);
 
@@ -75,7 +76,7 @@ class HomeController extends Controller
                 'twibbon' => '/storage/' . $request->file('twibbon')->storePublicly('twibbon'),
                 'follow_ig_cmc' => '/storage/' . $request->file('follow_ig_cmc')->storePublicly('follow_ig_cmc'),
                 'follow_ig_sekoin' => '/storage/' . $request->file('follow_ig_sekoin')->storePublicly('follow_ig_sekoin'),
-                'payment' => '/storage/' . $request->file('payment')->storePublicly('payment')
+                // 'payment' => '/storage/' . $request->file('payment')->storePublicly('payment')
             ]));
 
             $transaction = EventTransaction::create([
@@ -84,7 +85,7 @@ class HomeController extends Controller
                 'order_id' => Uuid::uuid4()
             ]);
 
-            return redirect()->route('guest.home.index')->with('success', 'Anda berhasil mendaftar! Silahkan tunggu info berikutnya');
+            return redirect()->route('guest.payment', $transaction->order_id)->with('success', 'Anda berhasil mendaftar! Silahkan selesaikan pembayaran!');
 
         } else {
             // dd($request->all());
@@ -102,7 +103,7 @@ class HomeController extends Controller
                 'data.*.twibbon' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'data.*.follow_ig_cmc' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'data.*.follow_ig_sekoin' => 'required|max:1024|mimes:jpeg,jpg,png',
-                'payment' => 'required|max:1024|mimes:jpeg,jpg,png',
+                // 'payment' => 'required|max:1024|mimes:jpeg,jpg,png',
                 'event_id' => 'required|exists:events,id'
             ]);
             $tokenRegister = Uuid::uuid4();
@@ -113,7 +114,7 @@ class HomeController extends Controller
                     'twibbon' => '/storage/' . $request->file('data.*.twibbon')[$x]->storePublicly('twibbon'),
                     'follow_ig_cmc' => '/storage/' . $request->file('data.*.follow_ig_cmc')[$x]->storePublicly('follow_ig_cmc'),
                     'follow_ig_sekoin' => '/storage/' . $request->file('data.*.follow_ig_sekoin')[$x]->storePublicly('follow_ig_sekoin'),
-                    'payment' => '/storage/' . $request->file('payment')->storePublicly('payment'),
+                    // 'payment' => '/storage/' . $request->file('payment')->storePublicly('payment'),
                     'name' => $request->data[$x]['name'],
                     'gender' => $request->data[$x]['gender'],
                     'email' => $request->data[$x]['email'],
@@ -131,9 +132,39 @@ class HomeController extends Controller
                     'order_id' => $tokenRegister
                 ]);
             };
-
-            return redirect()->route('guest.home.index')->with('success', 'Anda berhasil mendaftar! Silahkan tunggu info berikutnya');
+            return redirect()->route('guest.payment', $transaction->order_id)->with('success', 'Anda berhasil mendaftar! Silahkan selesaikan pembayaran!');
+            // return redirect()->route('guest.home.index')->with('success', 'Anda berhasil mendaftar! Silahkan tunggu info berikutnya');
         }
+    }
+
+    public function payment($uuid){
+        $trx = EventTransaction::with('event_package', 'event_register.event')->whereOrderId($uuid)->whereNull('pay_status')->whereNull('pay_time')->first();
+
+        if($trx == null)
+        {
+            return redirect()->route('guest.home.index')->with('error', 'Transaction Not Found');
+        }
+
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $uuid . '-' . substr(time(), -5),
+                'gross_amount' => $trx->event_package->price,
+            ),
+            'payment_type' => 'qris',
+            'customer_details' => array(
+                'first_name' => $trx->event_register->name,
+                'email' => $trx->event_register->email,
+            ),
+        );
+
+        $snapToken = Snap::getSnapToken($params);
+
+        return view('home.payment', compact('trx', 'snapToken'));
+    }
+
+    public function thankyou(){
+
+        return view('home.thankyou');
     }
 
 }

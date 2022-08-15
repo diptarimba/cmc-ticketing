@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('card');
             $table->string('photo');
-            $table->string('payment');
+            $table->string('payment')->nullable();
             $table->string('twibbon');
             $table->string('follow_ig_cmc');
             $table->string('follow_ig_sekoin');

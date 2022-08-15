@@ -9,7 +9,7 @@
 @section('body')
 <x-layoutContent
     Heading="Event Management"
-    mainTitle="Skoin 2022"
+    mainTitle="Sekoin 2022"
     subTitle="Event Management"
 >
     <x-card.card>

@@ -1,6 +1,6 @@
 @extends('layouts.admin.master')
 
-@section('title', 'Penghargaan Pegawai')
+@section('title', 'Registran Management')
 
 @section('header')
 
@@ -8,14 +8,14 @@
 
 @section('body')
 <x-layoutContent
-    Heading="Penghargaan Pegawai"
-    mainTitle="Pengadaan Pegawai"
-    subTitle="Penghargaan Pegawai"
+    Heading="Registran Management"
+    mainTitle="Sekoin 2022"
+    subTitle="Registran Management"
 >
     <x-card.card>
         <x-slot name="header">
             @if(Auth::check())
-            <x-card.card-title-create url="{{route('award.create')}}" />
+            <x-card.card-title text="Registran Sekoin 22" />
             @endif
         </x-slot>
         <x-slot name="body">
@@ -23,8 +23,9 @@
                 <thead>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Code</th>
-                    <th>Date</th>
+                    <th>Event</th>
+                    <th>Package</th>
+                    <th>Price</th>
                     <th>Action</th>
                 </thead>
                 <tbody>
@@ -45,12 +46,13 @@
         var table = $('.datatables-target-exec').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('award.index') }}",
+        ajax: "{{ route('audience.index')}}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, sortable: false, searchable: false},
             {data: 'name', name: 'name'},
-            {data: 'code', name: 'code'},
-            {data: 'date', name: 'date'},
+            {data: 'event.name', name: 'event.name'},
+            {data: 'package_name', name: 'package_name'},
+            {data: 'package_price', name: 'package_price'},
             {
                 data: 'action',
                 name: 'action',

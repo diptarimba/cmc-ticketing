@@ -28,8 +28,25 @@ class EventRegister extends Model
         'register_type'
     ];
 
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'event_id');
+    }
+
     public function event_transaction()
     {
-        return $this->hasMany(EventTransaction::class);
+        return $this->hasOne(EventTransaction::class);
+    }
+
+    public function event_package()
+    {
+        return $this->hasOneThrough(
+            EventPackage::class,
+            EventTransaction::class,
+            'event_register_id',
+            'id',
+            'id',
+            'event_package_id'
+        );
     }
 }

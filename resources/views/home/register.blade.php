@@ -63,8 +63,8 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
-                            <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment"></div>
+                            {{-- <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
+                            <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment"></div> --}}
                             <div class="mb-2">
                                 <input type="hidden" name="register_type" value="TEAM">
                                 <input type="hidden" name="event_id" value="{{ $event->id }}">
@@ -95,8 +95,8 @@
                                 id="gallery-photo-add-sekoin" />
                             <div class="gallery-sekoin row row-cols-12 justify-content-center" id="isi-gallery-sekoin">
                             </div>
-                            <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
-                            <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment">
+                            {{-- <x-forms.file label="Bukti Pembayaran" name="payment" id="gallery-photo-add-payment" />
+                            <div class="gallery-payment row row-cols-12 justify-content-center" id="isi-gallery-payment"> --}}
                             </div>
                             <div class="mb-2">
                                 <div class="col-form-label">Pilih Paket Anda</div>
@@ -131,7 +131,7 @@
             'twibbon',
             'cmc',
             'sekoin',
-            'payment'
+            // 'payment'
         ];
         for($x = 0; $x < 2; $x++){
             foreach($items as $each){
