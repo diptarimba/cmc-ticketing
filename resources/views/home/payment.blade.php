@@ -57,7 +57,7 @@
                 onSuccess: function(result) {
                     /* You may add your own implementation here */
                     alert("payment success!");
-                    window.location.href = '/';
+                    window.location.href = '{{route('guest.thankyou')}}';
                     console.log(result);
                 },
                 onPending: function(result) {
